@@ -1,0 +1,64 @@
+#Mark Fastner
+#CECS 229 Sec 07
+#Program assignemnt #5
+#5/7/2021
+import numpy as np
+# Part 1: Looking at the file
+kobe = [[18, 7.6], [19, 15.4], [20, 19.9], [21, 22.5], [22, 28.5], [23, 25.2],
+        [24, 30], [25, 24], [26, 27.6] , [27, 35.4], [28, 31.6], [29, 28.3],
+        [30, 26.8], [31, 27], [32, 25.3], [33, 27.9], [34, 27.4], [35,13.8],
+        [36, 22.3], [37, 17.6]]
+
+
+# Part 2: Changing list into a numpy array
+
+kobe_np = np.array(kobe)
+#print(kobe_np)
+#print(type(kobe_np))
+#print(kobe_np.shape)
+num_rows = 20
+num_cols = 2
+
+# Part 3: Introducing some numpy functions:
+
+# Part 3a: Transpose:
+
+kobe_transpose = kobe_np.T
+#print(kobe_transpose)
+
+# Part 3b: Make vector of ones
+
+ones = np.ones(num_rows)
+
+# Part 3c: Accessing specific elements in a numpy array
+#print(kobe_np[1])
+#print(kobe_transpose[1])
+#print(kobe_np[1,0])
+#print(kobe_transpose[1,0])
+A = kobe_transpose[0]
+y = kobe_transpose[1]
+
+# Part 3d: Concatenate two numpy arrays
+
+x = np.column_stack((A, ones))
+
+# Part 3e: Matrix Multiplication
+
+x_transpose = x.T
+x_prod = np.matmul(x_transpose, x)
+
+# Part 3f: Finding inverse of matrix
+
+x_prod_inv = np.linalg.inv(x_prod)
+
+# Part 4: On your own
+
+y_prod = np.matmul(x_transpose, y)
+theta = np.matmul(x_prod_inv, y_prod)
+
+# Part 5: Your submission
+
+print("============================\nx_prod_inv:\n", x_prod_inv,
+      "\n============================\ntheta0:\n", theta[0],
+      "\n============================\ntheta1:\n", theta[1],
+      "\n============================")
